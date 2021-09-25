@@ -90,13 +90,13 @@ app.layout = html.Div(children=[
                                         # Enter your code below. Make sure you have correct formatting.
                                         
                                     # Place them next to each other using the division style
-                                         dcc.Dropdown(id='input-type', 
+                                    dcc.Dropdown(id='input-type', 
                                                          options=[
                                                                  {'label': 'Yearly Airline Performance Report', 'value': 'OPT1'},
                                                                  {'label': 'Yearly Airline Delay Report', 'value': 'OPT2'}
                                                                  ],
                                             placeholder='Select a report type',
-                                            style={'width':'80%', 'padding':'3px', 'font-size': '20px', 'text-align-last' : 'center'}),                
+                                            style={'width':'80%', 'padding':'3px', 'font-size': '20px', 'text-align-last' : 'center'}),    
                                     
                                    # Add next division 
                                    html.Div([
@@ -126,11 +126,10 @@ app.layout = html.Div(children=[
                                 
                                 # TASK3: Add a division with two empty divisions inside. See above disvision for example.
                                 # Enter your code below. Make sure you have correct formatting.
-                                  html.Div([
+                               html.Div([
                                           html.Div([ ], id='plot4'),
                                           html.Div([ ], id='plot5')],                           
                                 style={'display':'flex'})
-                                ])
                                 ])
 
 # Callback function definition
@@ -147,7 +146,7 @@ app.layout = html.Div(children=[
                [State("plot1", 'children'), State("plot2", "children"),
                 State("plot3", "children"), State("plot4", "children"),
                 State("plot5", "children")
-               ])
+               ] )
 # Add computation to callback function and return graph
 def get_graph(chart, year, children1, children2, c3, c4, c5):
       
@@ -164,7 +163,6 @@ def get_graph(chart, year, children1, children2, c3, c4, c5):
             # TASK5: Average flight time by reporting airline
             # Enter your code below. Make sure you have correct formatting.
             line_fig = px.line(line_data, x='Month', y='AirTime', color='Reporting_Airline', title='Average monthly flight time in minutes by airline')
-        
             
             # Percentage of diverted airport landings per reporting airline
             pie_fig = px.pie(div_data, values='Flights', names='Reporting_Airline', title='% of flights by reporting airline')
@@ -183,7 +181,7 @@ def get_graph(chart, year, children1, children2, c3, c4, c5):
             
             # TASK6: Number of flights flying to each state from each reporting airline
             # Enter your code below. Make sure you have correct formatting.
-            tree_fig = px.treemap(tree_data, path=['DestState', 'Reporting_Airline'], 
+             tree_fig = px.treemap(tree_data, path=['DestState', 'Reporting_Airline'], 
                       values='Flights',
                       color='Flights',
                       color_continuous_scale='RdBu',
